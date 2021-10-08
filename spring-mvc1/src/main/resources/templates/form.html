@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<!-- バインドされているuserオブジェクトを指定 -->
+<form th:action="@{/form}" th:object="${user}" method="post">
+	<label for="name">氏名：</label>
+	<input type="text" th:field="*{name}"><br>
+	<!-- 下記のコードと同じ
+	<input type="number" id="name" name="name" th:value="*{name}">	 -->
+
+	<label for="email">E-Mail：</label>
+	<input type="email" th:field="*{email}"><br>
+
+	<label for="age">年齢</label>
+	<input type="number" th:field="*{age}"><br>
+
+	<button>送信</button>
+
+</form>
+
+</body>
+</html>
