@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- レスポンシブ対応 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ここにBootstrapが入っている -->
+  <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+  <!-- FontAwesome 有料版 -->
+  <script src="https://kit.fontawesome.com/9a93de7f00.js"></script>
+
+  <!-- 独自のcss  -->
+  <!-- とりあえず動くが、デベロッパーツール側でエラー確認 -->
+  <link th:href ="@{/css/index.css }" rel =" stylesheet">
+
+  <title>Title</title>
+</head>
+<body class="bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <h4 class="border-bottom my-3" th:text="#{inquiry}">
+        </h4>
+
+        <form th:action="@{/}" th:object="${inquiry}"
+          method="post" novalidate>
+          <div class="mb-3">
+            <label for="name" th:text="#{name}"></label>
+
+            <!-- th:errorclass="スタイル"は、
+            エラーがある場合に、class属性にスタイルを追加します。
+            エラーのチェックは、th:fieldまたはname属性から取得するため、これらと一緒に使う必要があります。 -->
+
+            <input type="text" class="form-control"
+              th:errorclass="is-invalid" th:field="*{name}">
+
+            <!-- または、
+            input type="text" class="form-control"
+            th:errorclass="is-invalid" name="name" -->
+
+            <!-- エラーの場合、ここでエラー表示 -->
+            <div class="invalid-feedback" th:errors="*{name}">
+
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="email" th:text="#{email}"></label>
+            <input type="email" class="form-control"
+              th:errorclass="is-invalid" th:field="*{email}">
+            <div class="invalid-feedback" th:errors="*{email}">
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="inquiry" th:text="#{inquiry}"></label>
+            <textarea class="form-control" rows="3"
+              th:errorclass="is-invalid" th:field="*{inquiry}">
+            </textarea>
+            <div class="invalid-feedback" th:errors="*{inquiry}">
+            </div>
+          </div>
+
+          <button class="w-100 btn btn-primary btn-lg"
+            type="submit" th:text="#{register}">
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- FontAwesome -->
+  <!-- CSS用に「fontawesome」は追記 -->
+  <i class="fas fa-laptop-code fa-4x pr-5 fontawesome" ></i>
+
+  <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
