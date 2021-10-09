@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+@import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+.fontawesome {
+	margin-top: 10%;
+	padding-left: 20%;
+}
