@@ -26,7 +26,6 @@ public class CommentController {
 	@GetMapping("/")
 
 	// 一見、「@ModelAttribute Comment comment」は必要ないように見えるものの、これがないとエラーが発生してしまう。
-	// おそらく、SpringMVCか何かが正常に稼働するために、必ずモデルとの紐づけが必要になる
 	public String getAllComments(@ModelAttribute Comment comment, Model model) {
 		model.addAttribute("comments", repository.findAll());
 		return "list";
