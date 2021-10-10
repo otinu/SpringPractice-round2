@@ -6,6 +6,8 @@
 <body>
 
   <!-- ログインメッセージ -->
+  <!-- th:if="${param.error}"の部分で、リクエストパラメータに応じて表示を変えている -->
+
   <div th:fragment="login">
     <div class="alert alert-danger" th:if="${param.error}">
       <small>ユーザ名またはパスワードが正しくありません</small>

@@ -14,7 +14,7 @@ public class SecurityController {
     }
 
     @GetMapping("/")
-    public String showList(Authentication loginUser, Model model) {
+    public String showList(Authentication loginUser, Model model) {	//	「Authentication」で認証済みのユーザー情報を取得
         model.addAttribute("username", loginUser.getName());
         model.addAttribute("role", loginUser.getAuthorities());
         return "user";

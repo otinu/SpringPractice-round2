@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 「/login」をアクセス可能にします
                 .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
-                .and()
+                .and()	//次の項目に移るときにはandで繋いでいる
             .formLogin()
                 // ログイン時のURLを指定
                 .loginPage("/login")
@@ -44,15 +44,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // ログアウト時のURLを指定
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .and()
+
             // Remember-Meの認証を許可します
             // これを設定すると、ブラウザを閉じて、
             // 再度開いた場合でも「ログインしたまま」にできます
-            .rememberMe();
+
+            .rememberMe();	//	login.html にもremember-meの記述をする
+
+        	// ====================================================================================
+
+        	/* 保存期間を1日(86400秒)にします  ⇒デフォルトは14日間、クッキー保存
+        		 .rememberMe().tokenValiditySeconds(86400);
+        	*/
+
+        	/*	デフォルトではサーバー再起動でremember-meが無効になってしまう。下記のように記述することでこの問題を解消できる
+        	 *	 .rememberMe().key("Unique and Secret").tokenValiditySeconds(86400);
+        	 */
+
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth)
-            throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
             // ユーザ名「admin」と「user」を用意します
             // パスワードは両方とも「password」です
