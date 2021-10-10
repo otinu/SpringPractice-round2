@@ -1,3 +1,5 @@
+// UserDetailsService を利用
+
 package com.example.demo.service;
 
 import java.util.HashSet;
@@ -23,8 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private final SiteUserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username)
-            throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         SiteUser user = userRepository.findByUsername(username);
         if (user == null) {
@@ -34,6 +35,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     public User createUserDetails(SiteUser user) {
+
+    	// GrantedAuthority は、先頭に「ROLE」を付けた文字列を渡す
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
 

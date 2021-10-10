@@ -57,6 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
         // userDetailsServiceを使用して、DBからユーザを参照できるようにします
+    	// (最初、この部分は auth.inMemoryAuthentication() だった)
         auth.userDetailsService(userDetailsService)
             .passwordEncoder(passwordEncoder());
     }

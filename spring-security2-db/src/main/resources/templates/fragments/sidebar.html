@@ -1,6 +1,9 @@
 <!DOCTYPE html>
+
+<!-- <html xmlns:sec>はThymeleaf + SpringSecurity の統合モジュール -->
 <html xmlns:th="http://www.thymeleaf.org"
   xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
   <meta charset="UTF-8">
 </head>
@@ -39,7 +42,9 @@
               </a>
             </li>
             <!-- ログイン情報の下に、「ユーザ一覧」を追加します -->
+            <!-- sec:authorize="hasRole('ADMIN')" でADMINだけ許可 -->
             <li sec:authorize="hasRole('ADMIN')" class="nav-item">
+
               <a th:href="@{/admin/list}" class="nav-link text-white">
                 <i class="bi bi-table me-2"></i>
                 ユーザ一覧

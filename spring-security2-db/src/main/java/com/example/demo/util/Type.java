@@ -12,6 +12,9 @@ public class Type {
         genders.put(1, "男性");
         genders.put(2, "女性");
         genders.put(3, "その他");
+        
+        //	Collections.unmodifiableMapによって、gendersが変更不可になる
+        //	⇒実質上、定数化
         GENDERS = Collections.unmodifiableMap(genders);
     }
 }
