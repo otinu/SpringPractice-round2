@@ -58,6 +58,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             throws Exception {
         // userDetailsServiceを使用して、DBからユーザを参照できるようにします
     	// (最初、この部分は auth.inMemoryAuthentication() だった)
+        
+        //userDetailsServiceはSpringで用意されたライブラリをインポートして使用している
         auth.userDetailsService(userDetailsService)
             .passwordEncoder(passwordEncoder());
     }
