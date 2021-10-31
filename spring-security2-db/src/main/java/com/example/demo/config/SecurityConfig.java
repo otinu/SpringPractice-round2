@@ -17,6 +17,8 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Configuration
+
+//SpringSecurityをConfigに実装する際、@EnableWebSecurityアノテーションとWebSecurityConfigurerAdapterの継承が必須
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -29,6 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
+        //  静的ファイルには認証をかけない
         // 「/js/**」を追加
         web.ignoring().antMatchers(
                 "/js/**", "/css/**", "/img/**", "/webjars/**");
